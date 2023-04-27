@@ -1,0 +1,9 @@
+{
+  "git": {
+    "push": false,
+    "commitMessage": "chore: release v${version}"
+  },
+  "hooks": {
+    "after:bump": "pnpm build"
+  }
+}

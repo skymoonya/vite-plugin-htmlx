@@ -1,0 +1,20 @@
+{
+  "name": "base",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev:mpa": "vite -c vite.config.mpa.ts",
+    "dev:spa": "vite -c vite.config.spa.ts",
+    "build:mpa": "vite build -c vite.config.mpa.ts",
+    "build:spa": "vite build -c vite.config.spa.ts"
+  },
+  "dependencies": {
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.2"
+  }
+}
