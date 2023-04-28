@@ -154,10 +154,10 @@ Pages with a `filename` of `index` or `index.html` are the default pages, and na
 
 ### UserOptions
 
-| Parameter| Type                    | Default Value | Description             |
-| -------- | -------------------- -- | ------------- | ----------------------- |
-| minify   | `boolean|MinifyOptions` | -             | Whether to compress html |
-| page     | `SpaPage | MpaPage[]`   | -             | Page configuration       |
+| Parameter | Type                    | Default Value | Description             |
+| --------- | ---------------------- | ------------- | ----------------------- |
+| minify    | `boolean|MinifyOptions` | -             | Whether to compress html |
+| page      | `SpaPage | MpaPage[]`   | -             | Page configuration       |
 
 ### MpaPage
 
