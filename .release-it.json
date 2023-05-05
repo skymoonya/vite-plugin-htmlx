@@ -1,9 +1,13 @@
 {
   "git": {
-    "push": false,
+    "push": true,
     "commitMessage": "chore: release v${version}"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "hooks": {
-    "after:bump": "pnpm build"
+    "after:bump": "pnpm build",
+    "after:release": "git push --tags"
   }
 }
