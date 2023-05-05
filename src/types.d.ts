@@ -2,8 +2,6 @@ import type { Options as EJSOptions } from 'ejs';
 import type { Options as MinifyOptions } from 'html-minifier-terser';
 import type { HtmlTagDescriptor } from 'vite';
 
-export type Entry = string | Record<string, string>;
-
 export interface InjectOptions {
   /**
    * Data injected into HTML

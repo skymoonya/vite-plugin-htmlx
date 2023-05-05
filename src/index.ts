@@ -50,7 +50,7 @@ export default function vitePluginHtml(options: UserOptions = {}): Plugin[] {
 
   return [
     {
-      name: 'vite-plugin-html',
+      name: 'vite-plugin-htmlx',
       configResolved(resolvedConfig) {
         viteConfig = resolvedConfig;
         env = loadEnv(viteConfig.mode, process.cwd(), '');
@@ -58,9 +58,9 @@ export default function vitePluginHtml(options: UserOptions = {}): Plugin[] {
       config(config) {
         const root = path.resolve(config.root || '.');
         if (Array.isArray(options.page)) {
-          const cacheDir = 'node_modules/.cache/vite-plugin-html';
+          const cacheDir = 'node_modules/.cache/vite-plugin-htmlx';
           const templates: string[] = [];
-          for (const page of options.page as MpaPage[]) {
+          for (const page of options.page) {
             const templatePath = path.join(root, page.template);
             if (templates.includes(templatePath)) {
               const newTemplatePath = path.join(
@@ -169,7 +169,7 @@ export default function vitePluginHtml(options: UserOptions = {}): Plugin[] {
       },
     },
     {
-      name: 'vite-plugin-html:minify',
+      name: 'vite-plugin-htmlx:minify',
       enforce: 'post',
       async transformIndexHtml(html) {
         if (options.minify !== false) {
