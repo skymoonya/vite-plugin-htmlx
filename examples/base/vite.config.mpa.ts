@@ -31,7 +31,7 @@ export default defineConfig({
           },
         },
         {
-          filename: 'index2',
+          filename: 'index2.html',
           template: '/src/page2/index.html',
           entry: '/src/page2/main.ts',
           inject: {

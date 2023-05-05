@@ -35,7 +35,7 @@ export default function vitePluginHtml(options: UserOptions = {}): Plugin[] {
     const pages = options.page;
     const filenames = new Set<string>();
     pages.forEach((page) => {
-      if (!page.filename.endsWith('.html')) {
+      if (page.filename.endsWith('.html')) {
         page.filename = page.filename.replace('.html', '');
       }
       filenames.add(page.filename);
@@ -171,6 +171,7 @@ export default function vitePluginHtml(options: UserOptions = {}): Plugin[] {
     {
       name: 'vite-plugin-htmlx:minify',
       enforce: 'post',
+      apply: 'build',
       async transformIndexHtml(html) {
         if (options.minify !== false) {
           let minifyOptions: MinifyOptions;
