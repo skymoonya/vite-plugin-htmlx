@@ -141,12 +141,45 @@ export default defineConfig({
   ],
 })
 ```
-In development mode, you can access multi-page pages through `${origin}/filename`, such as:
+
+- Configuration of multi-page application with the same template but different entry points
+
+```ts
+import { defineConfig } from 'vite'
+import html from 'vite-plugin-htmlx'
+
+export default defineConfig({
+  plugins: [
+    createHtmlPlugin({
+      minify: true,
+      page: [
+        {
+          entry: 'src/main.ts',
+          filename: 'index.html',
+          template: 'public/index.html',
+        },
+        {
+          entry: 'src/other.ts', // Different entry file
+          filename: 'other.html', // Different filename
+          template: 'public/index.html', // Same template
+        },
+      ],
+    }),
+  ],
+})
+```
+
+In development mode, you can access MPA pages through `${origin}/filename`, such as:
 ```
 http://127.0.0.1:5173/index.html
 http://127.0.0.1:5173/other.html
 ```
-Pages with a `filename` of `index` or `index.html` are the default pages, and navigating to a URL that does not match any page will navigate to this page.
+
+Pages with a `filename` of `index` or `index.html` are the default page, and navigating to a URL that does not match any page will navigate to this page.
+
+## TODO
+
+- Unit Tests
 
 ## Parameter Description
 
@@ -154,10 +187,10 @@ Pages with a `filename` of `index` or `index.html` are the default pages, and na
 
 ### UserOptions
 
-| Parameter | Type                    | Default Value | Description             |
-| --------- | ---------------------- | ------------- | ----------------------- |
-| minify    | `boolean|MinifyOptions` | -             | Whether to compress html |
-| page      | `SpaPage | MpaPage[]`   | -             | Page configuration       |
+| Parameter | Type                       | Default Value | Description             |
+| --------- | -------------------------- | ------------- | ----------------------- |
+| minify    | `boolean \| MinifyOptions` | -             | Whether to compress html |
+| page      | `SpaPage \| MpaPage[]`     | -             | Page configuration       |
 
 ### MpaPage
 

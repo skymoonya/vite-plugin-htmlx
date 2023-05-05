@@ -2,9 +2,9 @@
 
 **中文** | [English](./README.md)
 
-## 说明
+## 动机
 
-[vite-plugin-html](https://github.com/vbenjs/vite-plugin-html)似乎已经不再更新了。我在使用的过程中遇到了一些问题，但是`Issue`和`PR`已经很久没有处理过了，所以在参照源代码以及其功能的前提下重新写了这个插件
+[vite-plugin-html](https://github.com/vbenjs/vite-plugin-html)似乎已经不再更新了。我在使用的过程中遇到了一些问题，但是`Issue`和`PR`已经很久没有处理过了，所以在参照源代码以及其功能的前提下重写了这个插件
 
 ## 功能
 
@@ -114,7 +114,7 @@ export default defineConfig({
           },
         },
         {
-          entry: 'src/other-main.ts',
+          entry: 'src/other.ts',
           filename: 'other.html',
           template: 'public/other.html',
           inject: {
@@ -138,23 +138,56 @@ export default defineConfig({
   ],
 })
 ```
+
+- 同一个模板，不同入口的多页应用配置
+
+```ts
+import { defineConfig } from 'vite'
+import html from 'vite-plugin-htmlx'
+
+export default defineConfig({
+  plugins: [
+    createHtmlPlugin({
+      minify: true,
+      page: [
+        {
+          entry: 'src/main.ts',
+          filename: 'index.html',
+          template: 'public/index.html',
+        },
+        {
+          entry: 'src/other.ts', // 不一样的入口文件
+          filename: 'other.html', // 不一样的文件名
+          template: 'public/index.html', // 一样的模板
+        },
+      ],
+    }),
+  ],
+})
+```
+
 在开发模式中可以通过`${origin}/filename`来访问多页页面，如
 ```
 http://127.0.0.1:5173/index.html
 http://127.0.0.1:5173/other.html
 ```
+
 `filename`为`index`或者`index.html`的页面为默认页面，即URL没有匹配任何页面时将会导航到这个页面
+
+## TODO
+
+- 单元测试
 
 ## 参数说明
 
-`htmlx(options: UserOptions)`
+`html(options: UserOptions)`
 
 ### UserOptions
 
 | 参数    | 类型                     | 默认值 | 说明         |
 | -------| ------------------------ | ----  | ----------- |
-| minify | `boolean | MinifyOptions`| -     | 是否压缩 html |
-| page   | `SpaPage | MpaPage[]`    | -     | 页面配置      |
+| minify | `boolean \| MinifyOptions`| -     | 是否压缩 html |
+| page   | `SpaPage \| MpaPage[]`    | -     | 页面配置      |
 
 ### MpaPage
 
