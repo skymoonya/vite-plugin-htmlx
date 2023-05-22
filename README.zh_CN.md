@@ -186,16 +186,16 @@ http://127.0.0.1:5173/other.html
 
 | 参数    | 类型                     | 默认值 | 说明         |
 | -------| ------------------------ | ----  | ----------- |
-| minify | `boolean \| MinifyOptions`| -     | 是否压缩 html |
-| page   | `SpaPage \| MpaPage[]`    | -     | 页面配置      |
+| minify | `boolean \| MinifyOptions`| true | 是否压缩 html |
+| page   | `SpaPage \| MpaPage[]`    | -    | 页面配置      |
 
 ### MpaPage
 
 | 参数          | 类型             | 默认值        | 说明             |
 | ------------- | --------------- | ------------- | -------------- |
 | filename      | `string`        | -             | html 文件名     |
-| template      | `string`        | `index.html`  | 模板的路径       |
-| entry         | `string`        | `src/main.ts` | 入口文件        |
+| template      | `string`        | -             | 模板的路径       |
+| entry         | `string`        | -             | 入口文件        |
 | inject        | `InjectOptions` | -             | 注入 HTML 的数据 |
 
 ### SpaPage
@@ -203,7 +203,7 @@ http://127.0.0.1:5173/other.html
 | 参数      | 类型            | 默认值         | 说明           |
 | -------- | --------------- | ------------- | ------------- |
 | template | `string`        | `index.html`  | 模板的路径      |
-| entry    | `string`        | `src/main.ts` | 入口文件        |
+| entry    | `string`        | -             | 入口文件        |
 | inject   | `InjectOptions` | -             | 注入 HTML 的数据 |
 
 ### InjectOptions

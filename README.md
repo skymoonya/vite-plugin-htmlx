@@ -189,7 +189,7 @@ Pages with a `filename` of `index` or `index.html` are the default page, and nav
 
 | Parameter | Type                       | Default Value | Description             |
 | --------- | -------------------------- | ------------- | ----------------------- |
-| minify    | `boolean \| MinifyOptions` | -             | Whether to compress html |
+| minify    | `boolean \| MinifyOptions` | true          | Whether to compress html |
 | page      | `SpaPage \| MpaPage[]`     | -             | Page configuration       |
 
 ### MpaPage
@@ -197,7 +197,7 @@ Pages with a `filename` of `index` or `index.html` are the default page, and nav
 | Parameter     | Type            | Default Value | Description             |
 | ------------- | --------------- | ------------- | ----------------------- |
 | filename      | `string`        | -             | HTML file name          |
-| template      | `string`        | `index.html`  | Template path           |
+| template      | `string`        | -             | Template path           |
 | entry         | `string`        | -             | Entry file              |
 | inject        | `InjectOptions` | -             | Data injected into HTML |
 
@@ -206,7 +206,7 @@ Pages with a `filename` of `index` or `index.html` are the default page, and nav
 | Parameter     | Type            | Default Value | Description             |
 | ------------- | --------------- | ------------- | ----------------------- |
 | template      | `string`        | `index.html`  | Template path           |
-| entry         | `string`        | `src/main.ts` | Entry file              |
+| entry         | `string`        | -             | Entry file              |
 | inject        | `InjectOptions` | -             | Data injected into HTML |
 
 ### InjectOptions

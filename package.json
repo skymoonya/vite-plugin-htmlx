@@ -55,7 +55,9 @@
     "html",
     "minify",
     "vite-plugin",
-    "vite-plugin-html"
+    "vite-plugin-html",
+    "ejs",
+    "vite-plugin-ejs"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

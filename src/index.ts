@@ -29,7 +29,7 @@ const removeEmptyDir = (p: string) => {
   }
 };
 
-export default function vitePluginHtml(options: UserOptions = {}): Plugin[] {
+export default function vitePluginHtmlx(options: UserOptions = {}): Plugin[] {
   const isMpa = Array.isArray(options.page);
   if (Array.isArray(options.page)) {
     const pages = options.page;
@@ -78,13 +78,16 @@ export default function vitePluginHtml(options: UserOptions = {}): Plugin[] {
         } else if (options.page?.template) {
           input.index = path.join(root, options.page.template);
         }
-        return {
-          build: {
-            rollupOptions: {
-              input,
+        if (Object.keys(input).length) {
+          return {
+            build: {
+              rollupOptions: {
+                input,
+              },
             },
-          },
-        };
+          };
+        }
+        return null;
       },
       transformIndexHtml: {
         order: 'pre',

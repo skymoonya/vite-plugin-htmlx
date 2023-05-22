@@ -11,7 +11,7 @@ export default defineConfig({
     html({
       page: {
         // template: 'index.html',
-        template: 'static/index.html',
+        // template: 'static/index.html',
         entry: '/src/main.ts',
         inject: {
           data: {
