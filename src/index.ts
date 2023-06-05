@@ -56,14 +56,14 @@ export default function vitePluginHtmlx(options: UserOptions = {}): Plugin[] {
         env = loadEnv(viteConfig.mode, process.cwd(), '');
       },
       config(config) {
-        const root = path.resolve(config.root || '.');
+        const root = normalizePath(path.resolve(config.root || '.'));
         if (Array.isArray(options.page)) {
           const cacheDir = 'node_modules/.cache/vite-plugin-htmlx';
           const templates: string[] = [];
           for (const page of options.page) {
-            const templatePath = path.join(root, page.template);
+            const templatePath = path.posix.join(root, page.template);
             if (templates.includes(templatePath)) {
-              const newTemplatePath = path.join(
+              const newTemplatePath = path.posix.join(
                 root,
                 cacheDir,
                 `${page.filename}.html`,
@@ -76,7 +76,7 @@ export default function vitePluginHtmlx(options: UserOptions = {}): Plugin[] {
             }
           }
         } else if (options.page?.template) {
-          input.index = path.join(root, options.page.template);
+          input.index = path.posix.join(root, options.page.template);
         }
         if (Object.keys(input).length) {
           return {
@@ -155,14 +155,20 @@ export default function vitePluginHtmlx(options: UserOptions = {}): Plugin[] {
       },
       closeBundle() {
         const outputDirs = new Set<string>();
-        const outDir = path.resolve(viteConfig.root, viteConfig.build.outDir);
+        const outDir = normalizePath(
+          path.resolve(viteConfig.root, viteConfig.build.outDir),
+        );
         for (const filename of Object.keys(input)) {
           if (path.dirname(input[filename]) === viteConfig.root) continue;
           const templatePath = input[filename].replace(viteConfig.root, outDir);
           if (fs.existsSync(templatePath)) {
-            fs.moveSync(templatePath, path.join(outDir, `${filename}.html`), {
-              overwrite: true,
-            });
+            fs.moveSync(
+              templatePath,
+              path.posix.join(outDir, `${filename}.html`),
+              {
+                overwrite: true,
+              },
+            );
             outputDirs.add(path.dirname(templatePath));
           }
         }
