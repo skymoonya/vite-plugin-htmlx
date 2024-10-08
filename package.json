@@ -41,7 +41,7 @@
     "rimraf": "^5.0.0",
     "typescript": "^5.0.4",
     "unbuild": "^1.2.1",
-    "vite": "^4.2.1"
+    "vite": "^5.0.0"
   },
   "peerDependencies": {
     "vite": ">=4.0.0"

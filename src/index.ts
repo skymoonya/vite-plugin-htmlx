@@ -2,10 +2,8 @@ import history from 'connect-history-api-fallback';
 import fs from 'fs-extra';
 import path from 'node:path';
 import { render } from 'ejs';
-import { minify } from 'html-minifier-terser';
-import { normalizePath, loadEnv } from 'vite';
-import type { Plugin, ResolvedConfig } from 'vite';
-import type { Options as MinifyOptions } from 'html-minifier-terser';
+import { minify, type Options as MinifyOptions } from 'html-minifier-terser';
+import { normalizePath, loadEnv, type Plugin, type ResolvedConfig } from 'vite';
 import type { UserOptions, MpaPage, SpaPage } from './types';
 
 const defaultMinifyOptions: MinifyOptions = {
@@ -91,7 +89,7 @@ export default function vitePluginHtmlx(options: UserOptions = {}): Plugin[] {
       },
       transformIndexHtml: {
         order: 'pre',
-        async transform(html, ctx) {
+        async handler(html, ctx) {
           let page: MpaPage | SpaPage;
           if (isMpa) {
             const filename = Object.keys(input).find(
